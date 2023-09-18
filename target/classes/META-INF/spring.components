@@ -1,0 +1,5 @@
+com.anibalvillalva.auth.config.Application=org.springframework.stereotype.Component
+com.anibalvillalva.auth.config.Injector=org.springframework.stereotype.Component
+com.anibalvillalva.auth.entrypoints.impls.BalanceEntrypointImpl=org.springframework.stereotype.Component
+com.anibalvillalva.auth.entrypoints.impls.DepositEntrypointImpl=org.springframework.stereotype.Component
+com.anibalvillalva.auth.entrypoints.impls.TransactionEntripointImpl=org.springframework.stereotype.Component
