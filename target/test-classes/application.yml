@@ -10,3 +10,10 @@ logging:
       web:
         client:
           RestTemplate: DEBUG
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb+srv://<username>:<pwd>@<cluster>.mongodb.net/test-clean
+      database: test-clean
+api.environment: develop

@@ -1,39 +1,35 @@
 package com.anibalvillalva.auth.core.entities;
 
 
+import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 
 import java.sql.Timestamp;
-import java.util.Date;
 
 @Getter
-@Setter
+@Builder
 public class Transaction {
 
-        private double amount;
+        private Money money;
         private Timestamp timestamp;
         private String description;
-        private Account accountFrom;
-        private Account accountTo;
+        private Account account;
 
         // Constructor
-        public Transaction(double amount, Timestamp timestamp, String descripcion, Account accountFrom, Account accountTo) {
-            this.amount = amount;
+        public Transaction(Money money, Timestamp timestamp, String descripcion, Account account) {
+            this.money = money;
             this.timestamp = timestamp;
             this.description = descripcion;
-            this.accountFrom = accountFrom;
-            this.accountTo = accountTo;
+            this.account = account;
         }
 
         @Override
         public String toString() {
             return "TransaccionDTO{" +
-                    "monto=" + amount +
+                    "monto=" + money.getAmount() +
                     ", fecha=" + timestamp +
                     ", descripcion='" + description + '\'' +
-                    ", cuentaDesde='" + accountFrom + '\'' +
-                    ", cuentaHacia='" + accountTo + '\'' +
+                    ", cuentaDesde='" + account + '\'' +
                     '}';
         }
     }

@@ -6,7 +6,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.4.2</version>
+    <version>3.1.4</version>
     <relativePath/>
   </parent>
 
@@ -22,6 +22,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
+    <org.mapstruct.version>1.4.1.Final</org.mapstruct.version>
 
     <spring-context-indexer.version>5.3.3</spring-context-indexer.version>
   </properties>
@@ -108,9 +109,34 @@
         </exclusion>
       </exclusions>
     </dependency>
+
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
+      <version>1.18.30</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-mongodb</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.data</groupId>
+      <artifactId>spring-data-mongodb</artifactId>
+      <version>4.1.4</version>
+<!--      <exclusions>
+        <exclusion>
+          <groupId>org.mongodb</groupId>
+          <artifactId>mongodb-driver-core</artifactId>
+        </exclusion>
+      </exclusions>-->
+    </dependency>
+
+    <dependency>
+      <groupId>org.mongodb</groupId>
+      <artifactId>mongo-java-driver</artifactId>
+      <version>3.12.14</version>
     </dependency>
   </dependencies>
 
@@ -131,17 +157,35 @@
             <resources>
               <resource>
                 <directory>src/main/resources</directory>
-                <filtering>true</filtering>
+
               </resource>
             </resources>
           </configuration>
         </plugin>
         <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.8.0</version>
+          <version>3.11.0</version>
           <configuration>
-            <fork>true</fork>
-            <executable>/usr/lib/jvm/jdk-20/bin/javac</executable>
+            <source>${java.version}</source>
+            <target>${java.version}</target>
+            <annotationProcessorPaths>
+              <path>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct-processor</artifactId>
+                <version>${org.mapstruct.version}</version>
+              </path>
+              <path>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.18.30</version>
+              </path>
+            </annotationProcessorPaths>
+            <compilerArgs>
+              <compilerArg>
+                -Amapstruct.defaultComponentModel=spring
+              </compilerArg>
+            </compilerArgs>
           </configuration>
         </plugin>
         <plugin>

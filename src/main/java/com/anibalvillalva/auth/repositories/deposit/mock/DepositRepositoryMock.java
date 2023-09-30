@@ -6,7 +6,7 @@ import com.anibalvillalva.auth.repositories.deposit.DepositRepository;
 
 import java.math.BigDecimal;
 
-public class DepositImpl implements DepositRepository {
+public class DepositRepositoryMock implements DepositRepository {
 
     public Account execute(Account account, BigDecimal amount) throws Exception {
         if (account.getNumber() == 123L) {

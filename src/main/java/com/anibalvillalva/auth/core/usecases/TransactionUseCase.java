@@ -1,7 +1,8 @@
 package com.anibalvillalva.auth.core.usecases;
 
+import com.anibalvillalva.auth.core.entities.Account;
 import com.anibalvillalva.auth.core.entities.Transaction;
 
 public interface TransactionUseCase {
-    public Transaction execute(Transaction tx);
+    Account execute(Transaction tx) throws Exception;
 }

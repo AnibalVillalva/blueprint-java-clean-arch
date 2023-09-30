@@ -7,25 +7,25 @@ import com.anibalvillalva.auth.core.exceptions.InvalidAccountException;
 import com.anibalvillalva.auth.core.usecases.BalanceUseCase;
 import com.anibalvillalva.auth.core.usecases.TransactionUseCase;
 import com.anibalvillalva.auth.core.usecases.ValidationTransacionUseCase;
-import com.anibalvillalva.auth.repositories.deposit.DepositRepository;
+import com.anibalvillalva.auth.repositories.withdraw.WithdrawRepository;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import java.util.Objects;
 
-@Qualifier("withdraw")
-public class DepositUseCaseImpl implements TransactionUseCase {
 
+@Qualifier("withdraw")
+public class WithdrawCaseImpl implements TransactionUseCase {
     private final BalanceUseCase balance;
 
     private final ValidationTransacionUseCase validate;
 
-    private final DepositRepository deposit;
+    private final WithdrawRepository withdrawRepository;
 
-    public DepositUseCaseImpl(BalanceUseCase balance, ValidationTransacionUseCase validate,
-                              DepositRepository deposit) {
+    public WithdrawCaseImpl(BalanceUseCase balance, ValidationTransacionUseCase validate,
+                            WithdrawRepository withdrawRepository) {
         this.balance = balance;
         this.validate = validate;
-        this.deposit = deposit;
+        this.withdrawRepository = withdrawRepository;
     }
 
     @Override
@@ -42,7 +42,7 @@ public class DepositUseCaseImpl implements TransactionUseCase {
             throw new InvalidAccountException("AUTH", validationAccountStatus.toString());
         }
 
-        return deposit.execute(result.getAccount(),result.getMoney().getAmount());
+        return withdrawRepository.execute(result.getAccount(),result.getMoney().getAmount());
 
     }
 }

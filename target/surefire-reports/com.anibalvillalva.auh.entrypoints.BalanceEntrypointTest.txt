@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.anibalvillalva.auh.entrypoints.BalanceEntrypointTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.34 s <<< FAILURE! - in com.anibalvillalva.auh.entrypoints.BalanceEntrypointTest
+com.anibalvillalva.auh.entrypoints.BalanceEntrypointTest  Time elapsed: 0.339 s  <<< ERROR!
+java.lang.NoClassDefFoundError: org/springframework/beans/factory/config/InstantiationAwareBeanPostProcessorAdapter
+Caused by: java.lang.ClassNotFoundException: org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessorAdapter
+
