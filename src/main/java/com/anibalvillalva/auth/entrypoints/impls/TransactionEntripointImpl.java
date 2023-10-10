@@ -6,6 +6,7 @@ import com.anibalvillalva.auth.entrypoints.dtos.BalanceResponse;
 import com.anibalvillalva.auth.entrypoints.dtos.TransactionRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
@@ -25,7 +26,7 @@ public class TransactionEntripointImpl implements TransactionEntripoint {
     @Override
     @PostMapping(path = "/transaction", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<BalanceResponse> doTransaction(@RequestBody final TransactionRequest request,
+    public ResponseEntity doTransaction(@RequestBody final TransactionRequest request,
                                                       final Errors result) {
         log.info("Begin");
         log.info(String.valueOf(request));
@@ -35,6 +36,7 @@ public class TransactionEntripointImpl implements TransactionEntripoint {
 
 
         log.info("Finish");
-        return ResponseEntity.ok(new BalanceResponse(account));
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(new BalanceResponse(account));
     }
 }

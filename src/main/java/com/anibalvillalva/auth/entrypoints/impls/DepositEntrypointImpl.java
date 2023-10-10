@@ -7,6 +7,7 @@ import com.anibalvillalva.auth.entrypoints.dtos.BalanceResponse;
 import com.anibalvillalva.auth.entrypoints.dtos.TransactionRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
@@ -26,7 +27,7 @@ public class DepositEntrypointImpl {
   //  @Override
     @PostMapping(path = "/deposit", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<BalanceResponse> doTransaction(@RequestBody final TransactionRequest request,
+    public ResponseEntity doTransaction(@RequestBody final TransactionRequest request,
                                                          final Errors result) throws Exception {
         log.info("Begin Deposit");
         log.info(String.valueOf(request));
@@ -36,7 +37,8 @@ public class DepositEntrypointImpl {
         Account response = useCase.execute(tx);
 
         log.info("Finish Deposit");
-        return ResponseEntity.ok(new BalanceResponse(response));
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(new BalanceResponse(response));
     }
 
 }
