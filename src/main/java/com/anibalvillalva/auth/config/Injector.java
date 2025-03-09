@@ -102,7 +102,7 @@ public class Injector {
 
     @Bean
     public DepositUseCaseImpl createDepositUseCaseImpl() throws Exception {
-        return new DepositUseCaseImpl(createBalanceUseCase(), createValidateAccountTo(), createDepositRepositoryMongo());
+        return new DepositUseCaseImpl(createBalanceUseCase(), createValidateAccountTo(), createDepositMock());
     }
 
 
